@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SKY塾｜英語で未来を広げる</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --navy:#0f172a;
+  --sky:#38bdf8;
+  --blue:#0ea5e9;
+  --gold:#facc15;
+  --bg:#f8fafc;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:'Sawarabi Gothic',sans-serif;
+  background:var(--bg);
+  color:var(--navy);
+  overflow-x:hidden;
+}
+
+/* =====================
+OPENING
+===================== */
+
+#opening{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  overflow:hidden;
+  animation:openingOut 1s ease forwards;
+  animation-delay:5s;
+}
+
+@keyframes openingOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+.opening-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(15,23,42,.1), rgba(255,255,255,.25)),
+    url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2200&auto=format&fit=crop")
+    center center / cover no-repeat;
+  transform:scale(1.08);
+  animation:skyZoom 5s ease forwards;
+}
+
+@keyframes skyZoom{
+  to{
+    transform:scale(1);
+  }
+}
+
+/* 鳥 */
+
+.bird{
+  position:absolute;
+  width:76px;
+  height:36px;
+  opacity:0;
+  z-index:10;
+}
+
+.bird::before,
+.bird::after{
+  content:"";
+  position:absolute;
+  top:12px;
+  width:42px;
+  height:24px;
+  border-top:7px solid white;
+  border-radius:50%;
+}
+
+.bird::before{
+  left:0;
+  transform:rotate(-18deg);
+}
+
+.bird::after{
+  right:0;
+  transform:rotate(18deg);
+}
+
+.bird1{
+  top:21%;
+  left:-12%;
+  animation:fly1 1.8s ease forwards;
+  animation-delay:.2s;
+}
+
+.bird2{
+  top:28%;
+  left:-18%;
+  transform:scale(.72);
+  animation:fly2 2s ease forwards;
+  animation-delay:.45s;
+}
+
+.bird3{
+  top:17%;
+  left:-20%;
+  transform:scale(.58);
+  animation:fly3 2.2s ease forwards;
+  animation-delay:.7s;
+}
+
+@keyframes fly1{
+  0%{opacity:0; transform:translate(0,40px);}
+  20%{opacity:1;}
+  100%{opacity:1; transform:translate(420px,-30px);}
+}
+
+@keyframes fly2{
+  0%{opacity:0; transform:translate(0,25px) scale(.72);}
+  20%{opacity:1;}
+  100%{opacity:1; transform:translate(620px,-5px) scale(.72);}
+}
+
+@keyframes fly3{
+  0%{opacity:0; transform:translate(0,20px) scale(.58);}
+  20%{opacity:1;}
+  100%{opacity:1; transform:translate(760px,-55px) scale(.58);}
+}
+
+/* 本 */
+
+.real-book-wrap{
+  position:absolute;
+  bottom:58px;
+  left:50%;
+  width:560px;
+  height:300px;
+  transform:translateX(-50%);
+  perspective:2200px;
+  opacity:0;
+  animation:bookAppear .9s ease forwards;
+  animation-delay:1.35s;
+  z-index:20;
+}
+
+@keyframes bookAppear{
+  from{
+    opacity:0;
+    transform:translateX(-50%) translateY(45px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+}
+
+.book-table{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:520px;
+  height:190px;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse, rgba(0,0,0,.55), transparent 70%);
+  filter:blur(3px);
+}
+
+.book-body{
+  position:absolute;
+  left:50%;
+  bottom:38px;
+  width:470px;
+  height:190px;
+  transform:translateX(-50%);
+}
+
+.book-left{
+  position:absolute;
+  left:20px;
+  bottom:28px;
+  width:218px;
+  height:132px;
+  background:
+    repeating-linear-gradient(90deg, rgba(226,232,240,.55) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg,#ffffff,#f8fafc 60%,#e2e8f0);
+  border-radius:8px 40px 16px 8px;
+  transform:skewY(-7deg) rotate(-6deg);
+  box-shadow:
+    inset -18px 0 18px rgba(15,23,42,.08),
+    0 16px 28px rgba(15,23,42,.25);
+}
+
+.book-right{
+  position:absolute;
+  right:20px;
+  bottom:28px;
+  width:218px;
+  height:132px;
+  background:
+    repeating-linear-gradient(90deg, rgba(226,232,240,.55) 0 1px, transparent 1px 4px),
+    linear-gradient(225deg,#ffffff,#f8fafc 60%,#e2e8f0);
+  border-radius:40px 8px 8px 16px;
+  transform:skewY(7deg) rotate(6deg);
+  box-shadow:
+    inset 18px 0 18px rgba(15,23,42,.08),
+    0 16px 28px rgba(15,23,42,.25);
+}
+
+.book-spine{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  width:52px;
+  height:145px;
+  transform:translateX(-50%);
+  background:linear-gradient(to bottom,#f8fafc,#dbeafe,#1e3a8a);
+  border-radius:0 0 18px 18px;
+  box-shadow:0 12px 20px rgba(15,23,42,.2);
+  z-index:6;
+}
+
+.flip-page{
+  position:absolute;
+  left:238px;
+  bottom:74px;
+  width:120px;
+  height:170px;
+  background:
+    repeating-linear-gradient(90deg, rgba(226,232,240,.45) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg,#ffffff,#f8fafc,#e2e8f0);
+  border-radius:10px 34px 16px 8px;
+  transform-origin:left bottom;
+  box-shadow:
+    inset -12px 0 18px rgba(15,23,42,.08),
+    0 12px 24px rgba(15,23,42,.20);
+  animation:realPageFlip 1.05s cubic-bezier(.42,0,.2,1) infinite;
+  z-index:12;
+}
+
+.flip-page.two{
+  animation-delay:.2s;
+  opacity:.75;
+}
+
+.flip-page.three{
+  animation-delay:.4s;
+  opacity:.55;
+}
+
+@keyframes realPageFlip{
+  0%{
+    transform:rotateY(0deg) rotateZ(2deg);
+  }
+  45%{
+    transform:rotateY(-105deg) rotateZ(-1deg) translateX(-20px);
+  }
+  100%{
+    transform:rotateY(-178deg) rotateZ(-5deg) translateX(-76px);
+  }
+}
+
+.opening-content{
+  position:absolute;
+  top:16%;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  z-index:30;
+  opacity:0;
+  animation:logoFade .8s ease forwards;
+  animation-delay:2.45s;
+}
+
+@keyframes logoFade{
+  from{
+    opacity:0;
+    transform:translateX(-50%) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+}
+
+.opening-content img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:14px;
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.22),
+    0 0 0 6px rgba(255,255,255,.62);
+}
+
+.opening-content h1{
+  margin:0;
+  font-size:clamp(3rem,8vw,5rem);
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  color:white;
+  text-shadow:0 6px 18px rgba(15,23,42,.25);
+}
+
+.opening-content p{
+  margin-top:10px;
+  color:white;
+  letter-spacing:.22em;
+  font-size:clamp(.9rem,2vw,1.35rem);
+  text-shadow:0 4px 12px rgba(15,23,42,.18);
+}
+
+.final-star{
+  position:absolute;
+  bottom:282px;
+  left:50%;
+  width:34px;
+  height:34px;
+  transform:translateX(-50%);
+  background:var(--gold);
+  clip-path:polygon(50% 0%,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0% 50%,38% 38%);
+  opacity:0;
+  animation:starGlow 1.2s ease forwards;
+  animation-delay:3.75s;
+  filter:drop-shadow(0 0 20px rgba(250,204,21,.95));
+  z-index:40;
+}
+
+@keyframes starGlow{
+  0%{
+    opacity:0;
+    transform:translateX(-50%) scale(.4);
+  }
+  50%{
+    opacity:1;
+    transform:translateX(-50%) scale(1.9);
+  }
+  100%{
+    opacity:1;
+    transform:translateX(-50%) scale(1);
+  }
+}
+
+/* MAIN */
+
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.55);
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo-name{
+  font-family:'Poppins',sans-serif;
+  font-size:28px;
+  font-weight:700;
+  color:var(--navy);
+}
+
+.nav{
+  display:flex;
+  gap:30px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:700;
+  font-size:14px;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 24px 80px;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.12), rgba(255,255,255,.68)),
+    url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2200&auto=format&fit=crop")
+    center center / cover no-repeat;
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:60px;
+  align-items:center;
+}
+
+.hero-copy h1{
+  font-size:clamp(2.8rem,5vw,5rem);
+  line-height:1.18;
+  margin-bottom:26px;
+  font-weight:700;
+  color:var(--navy);
+}
+
+.hero-copy p{
+  color:#334155;
+  line-height:2;
+  font-size:1.05rem;
+  margin-bottom:34px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:16px 34px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  transition:.25s;
+  display:inline-block;
+}
+
+.btn-main{
+  background:linear-gradient(135deg,#0284c7,#0ea5e9);
+  color:white;
+  box-shadow:0 16px 35px rgba(2,132,199,.28);
+}
+
+.btn-sub{
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(15,23,42,.08);
+  color:var(--navy);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.hero-card{
+  background:rgba(255,255,255,.58);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:34px;
+  padding:40px;
+  box-shadow:0 24px 60px rgba(15,23,42,.12);
+  text-align:center;
+}
+
+.hero-card img{
+  width:300px;
+  height:300px;
+  object-fit:cover;
+  border-radius:50%;
+  margin:0 auto 24px;
+  box-shadow:
+    0 18px 45px rgba(15,23,42,.18),
+    0 0 0 10px rgba(255,255,255,.65);
+}
+
+.hero-card h2{
+  font-size:1.5rem;
+  margin-bottom:12px;
+}
+
+.hero-card p{
+  line-height:2;
+  color:#475569;
+}
+
+section{
+  padding:110px 24px;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2.4rem;
+  margin-bottom:18px;
+  font-weight:700;
+}
+
+.section-lead{
+  text-align:center;
+  color:#64748b;
+  margin-bottom:50px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+
+.card{
+  background:rgba(255,255,255,.74);
+  backdrop-filter:blur(18px);
+  border-radius:28px;
+  padding:34px;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 18px 50px rgba(15,23,42,.08);
+}
+
+.card h3{
+  margin-bottom:16px;
+  color:var(--navy);
+  font-size:1.2rem;
+}
+
+.card p{
+  line-height:2;
+  color:#475569;
+}
+
+.story{
+  background:linear-gradient(135deg,#f0f9ff,#ffffff);
+}
+
+.story-card{
+  display:grid;
+  grid-template-columns:.3fr 1fr;
+  gap:40px;
+  background:white;
+  border-radius:36px;
+  padding:44px;
+  margin-bottom:34px;
+  box-shadow:0 18px 50px rgba(15,23,42,.08);
+}
+
+.story-number{
+  font-family:'Poppins',sans-serif;
+  font-size:4rem;
+  font-weight:700;
+  color:#dbeafe;
+}
+
+.story-card h2{
+  margin-top:10px;
+  margin-bottom:18px;
+  font-size:2rem;
+}
+
+.story-card p{
+  line-height:2.2;
+  color:#475569;
+}
+
+.contact-form{
+  display:grid;
+  gap:16px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid #dbeafe;
+  background:rgba(255,255,255,.82);
+  font-size:15px;
+  outline:none;
+  transition:.25s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border:1px solid #38bdf8;
+  box-shadow:0 0 0 5px rgba(56,189,248,.15);
+}
+
+.contact-form button{
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+}
+
+footer{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:26px;
+}
+
+@media(max-width:900px){
+  .hero-inner,
+  .cards,
+  .story-card{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    text-align:center;
+  }
+
+  .hero-buttons{
+    justify-content:center;
+  }
+
+  .hero-card img{
+    width:220px;
+    height:220px;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .real-book-wrap{
+    transform:translateX(-50%) scale(.7);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING -->
+<div id="opening">
+
+  <div class="opening-bg"></div>
+
+  <div class="bird bird1"></div>
+  <div class="bird bird2"></div>
+  <div class="bird bird3"></div>
+
+  <div class="real-book-wrap">
+    <div class="book-table"></div>
+
+    <div class="book-body">
+      <div class="book-left"></div>
+      <div class="book-spine"></div>
+      <div class="book-right"></div>
+      <div class="flip-page three"></div>
+      <div class="flip-page two"></div>
+      <div class="flip-page"></div>
+    </div>
+  </div>
+
+  <div class="opening-content">
+    <img src="sky-juku-icon.jpeg" alt="SKY塾">
+    <h1>SKY塾</h1>
+    <p>英語で、未来を広げる。</p>
+  </div>
+
+  <div class="final-star"></div>
+
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+
+    <div class="logo-name">
+      SKY塾
+    </div>
+
+    <nav class="nav">
+      <a href="#monitor">モニター生募集</a>
+      <a href="#story">私たちが目指すもの</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="hero-copy">
+
+      <h1>
+        英語で、<br>
+        未来を広げる。
+      </h1>
+
+      <p>
+        受験・英検・学び直しを、あなたのペースで一緒に進める英語塾。
+        不登校経験や、「勉強が怖い」という感覚にも寄り添いながら、
+        未来へ進む力を育てます。
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          href="https://forms.gle/YCHm7D9nJ4Zo7msu9"
+          target="_blank"
+          class="btn btn-main"
+        >
+          モニター生募集
+        </a>
+
+        <a href="#contact" class="btn btn-sub">
+          無料相談はこちら
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-card">
+
+      <img src="sky-juku-icon.jpeg" alt="SKY塾">
+
+      <h2>
+        SKY塾
+      </h2>
+
+      <p>
+        “英語を武器に、未来を変える”
+        をコンセプトにした、
+        英語コーチング型の学習塾。
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MONITOR -->
+<section id="monitor">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      モニター生募集
+    </h2>
+
+    <p class="section-lead">
+      英語が苦手でも大丈夫。一緒に逆転しよう。
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>週1オンライン指導</h3>
+        <p>
+          一人ひとりの状況に合わせて、
+          学習計画を共同作成します。
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>英検・受験英語</h3>
+        <p>
+          英検対策、長文、英作文、
+          定期テストまで対応。
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>不登校サポート</h3>
+        <p>
+          心のしんどさにも寄り添いながら、
+          あなたのペースを大切にします。
+        </p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:50px;">
+
+      <a
+        href="https://forms.gle/YCHm7D9nJ4Zo7msu9"
+        target="_blank"
+        class="btn btn-main"
+      >
+        モニター生応募フォームへ
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STORY -->
+<section id="story" class="story">
+
+  <div class="container">
+
+    <div class="story-card">
+
+      <div class="story-number">01</div>
+
+      <div>
+
+        <h2>私たちが目指すもの</h2>
+
+        <p>
+          英語は単なる受験科目ではなく、
+          自分の世界を広げ、
+          新しい自分に出会うための「翼」です。
+
+          学校という枠組みに馴染めなかったり、
+          不登校を経験したりして、
+          「自分の居場所」を探している人もいるかもしれません。
+
+          ここ熊本で、
+          誰もが英語という武器を手にし、
+          自由に未来を描ける場所を作りたい。
+
+          そんな想いから、
+          この塾は誕生しました。
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="story-card">
+
+      <div class="story-number">02</div>
+
+      <div>
+
+        <h2>設立の背景と方針</h2>
+
+        <p>
+          熊本第一高校 英語コースを経て、
+          現在は大学で言語教育、
+          社会教育、
+          インクルーシブ教育を研究しています。
+
+          英検1級への挑戦を通して学んだ
+          「正しい戦略」と、
+          一人ひとりの背景に寄り添う
+          「合理的配慮」を大切にしています。
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="story-card">
+
+      <div class="story-number">03</div>
+
+      <div>
+
+        <h2>あなたへ</h2>
+
+        <p>
+          「もう一度学び直したい」
+          「英語で世界とつながりたい」
+
+          と願うすべての人へ。
+
+          今の状況は、
+          あなたの可能性を否定するものではありません。
+
+          ここから、
+          一生モノの英語力を手に入れ、
+          未来へ一緒に進んでいきましょう。
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      お問い合わせ
+    </h2>
+
+    <p class="section-lead">
+      お気軽にご相談ください。
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <h3>連絡先</h3>
+
+        <p>
+
+          Mail :
+          <a
+            href="mailto:tenchan0828t@gmail.com"
+            style="color:#0284c7; text-decoration:underline;"
+          >
+            tenchan0828t@gmail.com
+          </a>
+
+          <br><br>
+
+          Instagram :
+          <a
+            href="https://www.instagram.com/sky.cram_school"
+            target="_blank"
+            style="color:#0284c7; text-decoration:underline;"
+          >
+            @sky.cram_school
+          </a>
+
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>対応内容</h3>
+
+        <p>
+          英検対策 / 高校受験 / 大学受験 /
+          不登校サポート / 学び直し
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>対応地域</h3>
+
+        <p>
+          オンライン対応<br>
+          愛媛県松山市 対面相談可
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- FORM -->
+
+    <div style="max-width:760px; margin:70px auto 0;">
+
+      <div class="card">
+
+        <h3 style="font-size:1.6rem; margin-bottom:24px;">
+          お問い合わせフォーム
+        </h3>
+
+        <form
+          action="https://formspree.io/f/mzzgavqq"
+          method="POST"
+          class="contact-form"
+        >
+
+          <input
+            type="text"
+            name="name"
+            placeholder="お名前"
+            required
+          >
+
+          <input
+            type="text"
+            name="grade"
+            placeholder="学年"
+          >
+
+          <input
+            type="email"
+            name="email"
+            placeholder="メールアドレス"
+            required
+          >
+
+          <textarea
+            name="message"
+            rows="6"
+            placeholder="ご相談内容"
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            class="btn btn-main"
+          >
+            送信する
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  © SKY塾 - 英語で未来を広げる
+</footer>
+
+</body>
+</html>
